@@ -1,89 +1,103 @@
 // Пакет в котором находитсся класс
 package Classes;
 
+import java.util.Random;
+
+import Interfaces.iActionBehavior;
+// import Interfaces.iActorBehavior;
+
 //класс ActionClient расширяет абстрактный класс Actor
-public class ActionClient extends Actor {
+public class ActionClient implements iActionBehavior{
 
+    // Дополнительное поле класса хранящее:
+    // Client Name
+    private static String name;
+    //имя акции
+    public static String actionName;
 
-    // Дополнительное поле класса, хранящее имя акции, номер акционного клиента, количество клиентов
-    private String actionName;
+    //номер акционного клиента
+    public int actionClientID;
 
-    private int actionClientID;
+    //количество клиентов
+    private static int amountClients;
+    
 
-    static int amountClients;
+    // Флаг, указывающий, принимает ли клиент заказ
+    private boolean isTakeOrder;
+
+    // Флаг, указывающий, выполняет ли клиент заказ
+    private boolean isMakeOrder;
 
     // Конструктор класса, принимающий имя и номер акционного клиента и название акции при создании
     public ActionClient(String name, String actionName, int actionClientID) {
-        super(name);
-        this.actionName = actionName;
+        ActionClient.name = name;
+        ActionClient.actionName =  "'Lucky Buyer'";
         this.actionClientID = actionClientID;
     }
 
-    // Переопределенный метод для получения имени клиента
-    @Override
-    public String getName() {
+    // Метод для получения 
+    public static String getName() {
         return name;
     }
- 
-    // Переопределенный метод для установки имени клиента
+
     @Override
-    public void setName(String name) {
-        this.name = name;        
+    public ActionClient getActionClient() {
+        return new ActionClient(name, actionName, 12);
+    }
+
+  
+
+  
+    @Override
+    public boolean isMakeOrder() {
+        return isMakeOrder;
+    }
+
+    @Override
+    public boolean isTakeOrder() {
+        return isTakeOrder;
+    }
+
+    @Override
+    public ActionClient setActionClient() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setActionName(String actionName) {
+        ActionClient.actionName = actionName;
         
     }
 
-    // Метод для получения номера акционного клиента
+    @Override
+    public void setMakeOrder(boolean val) {
+        this.isMakeOrder = val;
+        
+    }
+
+    @Override
+    public void setTakeOrder(boolean val) {
+        this.isTakeOrder = val;
+        
+    }
+
+    // Метод для получения количества клиентов
+    public static int getAmountClients(){
+        return amountClients = new Random().nextInt(20)+1;
+    }
+
+    // Метод для установки количества клиентов
+    public static void setAmountClients(int amountClients){}
+
+    public static String getActionName() {
+        return ActionClient.actionName;
+    }
+
     public int getActionClientID() {
         return actionClientID;
     }
-
-    // Метод для установки номера акционного клиента
-    public void setActionClientID(int actionClientID) {
-        this.actionClientID = actionClientID;
-    }
-
-    // Метод для получения самого объекта клиента
-    @Override
-    public Actor getActor() {
-        return this;
-    }
-
-    // Метод для проверки, принимает ли клиент заказ (делегирование к суперклассу)
-    public boolean isTakeOrder() {
-        return super.isTakeOrder;
-    }
-
-    // Метод для проверки, выполняет ли клиент заказ (делегирование к суперклассу)
-    public boolean isMakeOrder() {
-        return super.isMakeOrder;
-    }
-
-    // Метод для установки флага принятия заказа (делегирование к суперклассу)
-    public void setTakeOrder(boolean val) {
-        super.isTakeOrder = val;
-    }
-
-    // Метод для установки флага выполнения заказа (делегирование к суперклассу)
-    public void setMakeOrder(boolean val) {
-        super.isMakeOrder = val;
-    }
-
-    public String getActionName() {
-        return actionName;
-    }
-
-    public void setActionName(String actionName) {
-        this.actionName = actionName;
-    }
-
-    public static int getAmountClients() {
-        return amountClients;
-    }
-
-    public static void setAmountClients(int amountClients) {
-        ActionClient.amountClients = amountClients;
-    }
-
-
     
+    
+   
 }

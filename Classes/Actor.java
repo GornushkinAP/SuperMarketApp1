@@ -4,14 +4,15 @@ package Classes;
 // Импорт интерфейса iActorBehavior
 import Interfaces.iActorBehavior;
 
+
 // Абстрактный класс Actor, реализующий интерфейс iActorBehavior
-public abstract class Actor implements iActorBehavior {
+public abstract class Actor implements iActorBehavior{
 
     // Поля класса:
 
     // Имя 
     protected String name;
-
+    
     // Флаг, указывающий, принимает ли клиента заказ
     protected boolean isTakeOrder;
 
@@ -29,5 +30,8 @@ public abstract class Actor implements iActorBehavior {
     // Абстрактный метод для установки имени клиента
     public abstract void setName(String name);
 
+    public abstract boolean haveReceipt(); 
+
+    public abstract void returnOrder();
     
 }

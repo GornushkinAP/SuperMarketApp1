@@ -4,16 +4,22 @@ package Classes;
 // Импорт необходимых интерфейсов и библиотек
 import java.util.ArrayList;
 import java.util.List;
+
+import Interfaces.iActionBehavior;
 import Interfaces.iActorBehavior;
 import Interfaces.iMarketBehavior;
 import Interfaces.iQueueBehavior;
+import Interfaces.iReturnOrder;
+
 
 // Класс Market реализует интерфейсы iMarketBehavior и iQueueBehavior
-public class Market implements iMarketBehavior, iQueueBehavior {
+public class Market implements iMarketBehavior, iQueueBehavior{
 
+   
     // Список для хранения клиента в очереди
     private List<iActorBehavior> queue;
 
+    
     // Конструктор класса
     public Market() {
         // Инициализация списка очереди
@@ -65,6 +71,19 @@ public class Market implements iMarketBehavior, iQueueBehavior {
         }
     }
 
+  
+
+    public void processReturn(Actor actor) {
+        if (actor.haveReceipt()) {
+            actor.returnOrder();
+           // Логика возврата для клиента
+           System.out.println("Возврат товара осуществлен для покупателя " + actor.getActor().getName());
+        } else {
+            System.out.println("Товар не возможно вернуть. У покупателя " + actor.getActor().getName() + " отсутствует чек ");
+        } 
+    }
+
+
     // Метод для освобождения клиентов из очереди
     @Override
     public void releaseFromQueue() {
@@ -89,4 +108,15 @@ public class Market implements iMarketBehavior, iQueueBehavior {
             }
         }
     }
+
+    @Override
+    public void promotionInMarket(iActionBehavior actor) {
+        System.out.println("Количество участников в акции: " + ActionClient.getAmountClients());
+        System.out.println("Победитель в акции: " + ActionClient.getActionName() + " клиент с именем " + ActionClient.getName());
+        
+        
+    }
+
+    
+    
 }

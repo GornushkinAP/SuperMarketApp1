@@ -11,6 +11,9 @@ public interface iMarketBehavior {
     // Метод для принятия клиента в магазин
     public void acceptToMarket(iActorBehavior actor);
 
+    // Метод для проведения акции в магазине
+    public void promotionInMarket(iActionBehavior actor);
+
     // Метод для освобождения клиентов из магазина
     public void releaseFromMarket(List<Actor> list);
 

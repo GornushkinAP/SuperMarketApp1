@@ -27,11 +27,11 @@ public class TaxInspector implements iActorBehavior {
         return name;
     }
 
-    // Переопределенный метод интерфейса для получения актера (в данном случае, OrdinaryClient)
+    // Переопределенный метод интерфейса для получения клиента (в данном случае, OrdinaryClient)
     @Override
     public Actor getActor() {
         // Создание и возвращение нового объекта OrdinaryClient с жестко заданными параметрами
-        return new OrdinaryClient("Тайный покупатель",  4);
+        return new OrdinaryClient("Тайный покупатель",  4, true);
     }
 
     // Переопределенный метод интерфейса для проверки, выполняет ли налоговый инспектор заказ

@@ -1,18 +1,26 @@
 // Пакет, в котором находится класс
 package Classes;
 
+import Interfaces.iActionBehavior;
+import Interfaces.iActorBehavior;
+import Interfaces.iReturnOrder;
+
 // Класс OrdinaryClient расширяет абстрактный класс Actor
-public class OrdinaryClient extends Actor {
+public class OrdinaryClient extends Actor implements iReturnOrder{
 
     // Дополнительное поле класса, хранящее номер клиента
     private int number;
+    // receipt
+    private boolean haveReceipt;
 
+ 
     // Конструктор класса, принимающий имя и номер клиента при создании
-    public OrdinaryClient(String name, int number) {
+    public OrdinaryClient(String name, int number, boolean haveReceipt) {
         // Вызов конструктора суперкласса (Actor) с передачей имени клиента
         super(name);
         // Установка номера клиента
         this.number = number;
+        this.haveReceipt = haveReceipt;
     }
 
     // Переопределенный метод для получения имени клиента
@@ -61,4 +69,22 @@ public class OrdinaryClient extends Actor {
     public Actor getActor() {
         return this;
     }
+
+    // Метод для возврата товара
+    @Override
+    public void returnOrder() {
+       if (haveReceipt()) {
+            // Логика возврата для клиента
+            System.out.println("Возврат товара для покупателя");
+        } else {
+            System.out.println("Товар не возможно вернуть. У покупателя отсутствует чек");
+        }   
+    }
+
+    // Проверка чека
+    @Override
+    public boolean haveReceipt() {
+        return haveReceipt;
+    }
 }
+
